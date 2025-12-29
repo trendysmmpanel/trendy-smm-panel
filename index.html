@@ -20,6 +20,7 @@
             --text-muted: #94a3b8;
             --border: #334155;
             --font: 'Plus Jakarta Sans', sans-serif;
+            --bottom-nav-height: 70px; /* New var for mobile nav */
         }
 
         * { box-sizing: border-box; }
@@ -36,7 +37,6 @@
             width: 100%;
         }
 
-        /* Left Side: Marketing/Hero */
         .auth-hero {
             background: linear-gradient(135deg, #312e81 0%, #0f172a 100%);
             display: flex;
@@ -67,7 +67,6 @@
         .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 16px; }
         .feature-icon { color: var(--accent); background: rgba(16, 185, 129, 0.1); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-        /* Right Side: Form */
         .auth-form-wrapper {
             display: flex; align-items: center; justify-content: center;
             background: var(--bg-dark); padding: 40px;
@@ -78,13 +77,12 @@
         .form-header h2 { font-size: 28px; margin: 0 0 8px 0; }
         .form-header p { color: var(--text-muted); margin: 0; }
 
-        /* Inputs */
         .input-group { margin-bottom: 16px; }
         .input-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
         .input-field { 
             width: 100%; padding: 14px 16px; 
             background: var(--surface); border: 1px solid var(--border); 
-            color: white; border-radius: 8px; font-size: 16px; /* 16px prevents zoom */
+            color: white; border-radius: 8px; font-size: 16px; 
             font-family: inherit; transition: 0.2s; box-sizing: border-box;
         }
         .input-field:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px var(--primary-glow); background: #253045; }
@@ -104,28 +102,12 @@
         .switch-link { color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; margin-left: 5px; }
         .switch-link:hover { text-decoration: underline; }
 
-        /* Auth Mobile Logic */
         @media (max-width: 900px) {
-            #auth-container { 
-                display: flex; 
-                flex-direction: column; 
-                min-height: auto; 
-            }
-            
-            .auth-hero { 
-                padding: 40px 20px; 
-                min-height: auto; /* Allow shrink */
-            }
+            #auth-container { display: flex; flex-direction: column; min-height: auto; }
+            .auth-hero { padding: 40px 20px; min-height: auto; }
             .hero-title { font-size: 32px; }
             .hero-desc { font-size: 15px; margin-bottom: 20px; }
-            .feature-list li { font-size: 14px; }
-
-            .auth-form-wrapper { 
-                padding: 30px 20px; 
-                min-height: auto; 
-                flex: 1; 
-            }
-            .auth-box { max-width: 100%; }
+            .auth-form-wrapper { padding: 30px 20px; min-height: auto; flex: 1; }
         }
 
         /* ========================
@@ -143,21 +125,19 @@
         .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; color: white; display:flex; align-items:center; gap:10px; }
         .logo span { color: var(--primary); }
         
-        /* Desktop Menu (User Pill) */
         .user-pill { 
             background: #253045; border: 1px solid var(--border);
             padding: 8px 16px; border-radius: 30px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 12px;
         }
 
-        /* Mobile Hamburger & Menu */
         .hamburger { display: none; font-size: 24px; cursor: pointer; color: white; padding: 5px; }
         .mobile-menu {
             display: none;
-            position: absolute; top: 110%; left: 0; right: 0;
+            position: absolute; top: 110%; right: 0; width: 200px;
             background: var(--surface); border: 1px solid var(--border);
-            border-radius: 10px; padding: 20px;
+            border-radius: 10px; padding: 15px;
             z-index: 100; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            flex-direction: column; gap: 15px; text-align: center;
+            flex-direction: column; gap: 10px; text-align: left;
         }
         .mobile-menu.active { display: flex; }
 
@@ -179,7 +159,6 @@
         .dash-btn { width: 100%; background: var(--primary); color: white; border:none; padding: 15px; border-radius: 10px; font-weight: 700; margin-top: 20px; cursor: pointer; font-size: 16px; }
         .dash-btn:hover { background: #4f46e5; }
 
-        /* Scrollable Table Wrapper */
         .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; border-radius: 8px; border: 1px solid var(--border); }
         table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 600px; background: #162032; }
         th { text-align: left; padding: 15px; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2); white-space: nowrap; }
@@ -193,19 +172,16 @@
         .clickable-id { color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: bold; }
         .clickable-id:hover { color: white; }
 
-        /* ========================
-           3. MODAL & WALLET STYLES
-           ======================== */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
         .modal-content { 
             background-color: var(--surface); 
             margin: 5% auto; 
             padding: 0; 
             border: 1px solid var(--border); 
-            width: 95%; /* Better mobile width */
+            width: 95%; 
             max-width: 500px; 
-            max-height: 90vh; /* Prevent cut-off */
-            overflow-y: auto; /* Scroll inside modal */
+            max-height: 90vh; 
+            overflow-y: auto; 
             border-radius: 16px; 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
             animation: slideIn 0.3s ease; 
@@ -217,39 +193,103 @@
         .close-modal { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; padding: 0 10px; }
         .close-modal:hover { color: white; }
 
-        /* Timeline */
         .timeline { display: flex; justify-content: space-between; margin-top: 20px; position: relative; }
         .timeline::before { content: ''; position: absolute; top: 15px; left: 0; right: 0; height: 2px; background: #334155; z-index: 0; }
         .tl-step { position: relative; z-index: 1; text-align: center; width: 33%; }
         .tl-dot { width: 30px; height: 30px; background: #1e293b; border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 12px; color: #64748b; font-weight: bold; transition: 0.3s; }
         .tl-text { font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase; }
-        
-        /* Active State */
         .tl-step.active .tl-dot { border-color: var(--accent); background: var(--accent); color: black; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
         .tl-step.active .tl-text { color: var(--accent); }
         
-        /* Wallet Ledger Items */
         .tx-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
         .tx-left { display: flex; flex-direction: column; gap: 4px; }
         .tx-date { font-size: 11px; color: #64748b; }
         .tx-amount { font-weight: 700; font-size: 14px; }
-        .tx-credit { color: var(--accent); } /* Green for Add Funds */
-        .tx-debit { color: var(--danger); }  /* Red for Orders */
+        .tx-credit { color: var(--accent); }
+        .tx-debit { color: var(--danger); }
 
-        /* Dashboard Mobile Adjustments */
-        @media (max-width: 850px) {
-            #dashboard-container { padding: 15px; }
-            .navbar { padding: 12px 15px; }
-            .main-layout { grid-template-columns: 1fr; } 
+        /* =====================================
+           3. MOBILE OPTIMIZATIONS (The Fix)
+           ===================================== */
+        
+        /* Mobile Bottom Navigation (Hidden on Desktop) */
+        .mobile-bottom-nav { display: none; }
+
+        @media (max-width: 768px) {
+            body { padding-bottom: var(--bottom-nav-height); }
             
-            .grid-stats { grid-template-columns: 1fr; } /* Stack stats */
+            #dashboard-container { padding: 15px; padding-bottom: 80px; }
             
-            .user-pill { display: none; }
-            .hamburger { display: block; }
+            /* Navbar adjustments */
+            .navbar { padding: 12px 15px; position: sticky; top: 10px; z-index: 99; margin-bottom: 15px; }
+            .user-pill { display: none; } /* Hide default user pill */
+            .hamburger { display: block; font-size: 26px; }
+
+            /* Grid Layout Reset for Mobile SPA feel */
+            .main-layout { display: block; gap: 0; }
+            .grid-stats { display: grid; /* will be toggled */ grid-template-columns: 1fr; gap: 15px; margin-bottom: 0; }
             
-            .panel-card { padding: 20px; } /* Reduce padding */
+            /* Structural Resets to allow toggling individual cards */
+            .main-layout > div { display: contents; } 
+            .panel-card { margin-bottom: 0; } /* Remove margins, container handles padding */
+
+            /* HIDE EVERYTHING INITIALLY ON MOBILE */
+            #card-new-order, 
+            #card-history, 
+            #card-wallet,
+            .grid-stats { 
+                display: none; 
+                animation: fadeIn 0.3s ease;
+            }
+
+            /* Helper to show active section */
+            .mobile-active { display: block !important; }
+            .mobile-active-grid { display: grid !important; }
+
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+            /* Bottom Navigation Bar */
+            .mobile-bottom-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0; left: 0; right: 0;
+                height: var(--bottom-nav-height);
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid var(--border);
+                z-index: 1000;
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+
+            .nav-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-muted);
+                font-size: 10px;
+                font-weight: 600;
+                gap: 4px;
+                width: 100%;
+                height: 100%;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .nav-item.active { color: var(--primary); }
+            .nav-item.active svg { stroke: var(--primary); fill: rgba(99, 102, 241, 0.1); }
+            
+            .nav-icon { width: 24px; height: 24px; stroke-width: 2px; }
+
+            /* Fix Mobile Menu */
+            .mobile-menu {
+                right: 0; left: auto; top: 50px;
+                width: 220px;
+            }
         }
-
     </style>
 </head>
 <body>
@@ -334,18 +374,20 @@
             <button onclick="logout()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; margin-left:5px;">&times;</button>
         </div>
 
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div style="display:flex; align-items:center; gap:15px;" class="mobile-only-header">
+             <div style="font-weight:700; color:var(--accent); font-size:14px; display:none;" id="mob-nav-balance">₹ <span id="mob-balance-text">0.00</span></div>
+             <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
 
         <div class="mobile-menu" id="mobileMenu">
-             <div style="font-weight:bold; color:var(--text-muted);">Balance</div>
-             <div style="font-size:18px; color:var(--accent);">₹ <span id="mob-balance">0.00</span></div>
-             <div style="border-top:1px solid var(--border); margin:5px 0;"></div>
-             <div style="color:white;" id="mob-user">User</div>
-             <button onclick="logout()" style="background:var(--danger); color:white; border:none; padding:10px; border-radius:8px; width:100%; font-weight:bold;">LOGOUT</button>
+             <div style="font-size:12px; font-weight:bold; color:var(--text-muted); margin-bottom:5px;">LOGGED IN AS</div>
+             <div style="color:white; font-weight:600; margin-bottom:10px;" id="mob-user">User</div>
+             <div style="border-top:1px solid var(--border); margin-bottom:10px;"></div>
+             <button onclick="logout()" style="background:var(--danger); color:white; border:none; padding:10px; border-radius:8px; width:100%; font-weight:bold; cursor:pointer;">LOGOUT</button>
         </div>
     </nav>
 
-    <div class="grid-stats">
+    <div class="grid-stats" id="view-home">
         <div class="stat-card">
             <div class="stat-shine"></div>
             <h3 id="global-orders">...</h3>
@@ -363,7 +405,7 @@
 
     <div class="main-layout">
         <div>
-            <div class="panel-card">
+            <div class="panel-card" id="card-new-order">
                 <div class="card-head">🚀 Place New Order</div>
                 
                 <form id="orderForm">
@@ -403,7 +445,7 @@
                 </form>
             </div>
 
-            <div class="panel-card" style="margin-top:25px;">
+            <div class="panel-card" id="card-history" style="margin-top:25px;">
                 <div class="card-head">📜 Recent Orders</div>
                 <div class="table-wrap">
                     <table>
@@ -415,7 +457,7 @@
         </div>
 
         <div>
-            <div class="panel-card">
+            <div class="panel-card" id="card-wallet">
                 <div class="card-head">💰 Add Funds</div>
                 <div style="text-align:center; margin-bottom:20px;">
                     <img id="qr-image" src="" alt="QR" style="width:180px; border-radius:10px; border:5px solid white; display:none; margin:0 auto;">
@@ -443,6 +485,25 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="mobile-bottom-nav">
+    <button class="nav-item active" onclick="switchMobileTab('home', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Home
+    </button>
+    <button class="nav-item" onclick="switchMobileTab('order', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        Order
+    </button>
+    <button class="nav-item" onclick="switchMobileTab('history', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        History
+    </button>
+    <button class="nav-item" onclick="switchMobileTab('wallet', this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        Wallet
+    </button>
 </div>
 
 <div id="orderModal" class="modal">
@@ -524,7 +585,7 @@
     let myOrders = [];
     let myDeposits = [];
 
-    // --- MOBILE MENU FUNCTION ---
+    // --- MOBILE UI LOGIC (ADDED) ---
     function toggleMenu() {
         const menu = document.getElementById('mobileMenu');
         if (menu.style.display === 'flex') {
@@ -534,6 +595,30 @@
         }
     }
 
+    function switchMobileTab(tabName, btnElement) {
+        // Only run logic on mobile
+        if(window.innerWidth > 768) return;
+
+        // Reset all sections
+        document.getElementById('view-home').classList.remove('mobile-active-grid');
+        document.getElementById('card-new-order').classList.remove('mobile-active');
+        document.getElementById('card-history').classList.remove('mobile-active');
+        document.getElementById('card-wallet').classList.remove('mobile-active');
+
+        // Reset nav buttons
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        if(btnElement) btnElement.classList.add('active');
+
+        // Activate specific section
+        if(tabName === 'home') document.getElementById('view-home').classList.add('mobile-active-grid');
+        if(tabName === 'order') document.getElementById('card-new-order').classList.add('mobile-active');
+        if(tabName === 'history') document.getElementById('card-history').classList.add('mobile-active');
+        if(tabName === 'wallet') document.getElementById('card-wallet').classList.add('mobile-active');
+        
+        // Scroll to top
+        window.scrollTo(0,0);
+    }
+
     // --- AUTH LOGIC ---
     function checkAuth() {
         const u = localStorage.getItem('smm_user');
@@ -541,7 +626,7 @@
         else { showAuth(); }
     }
     
-    function showAuth() { document.getElementById('auth-container').style.display = 'flex'; /* Mobile fix: grid overwritten by flex in CSS */ if(window.innerWidth > 900) document.getElementById('auth-container').style.display = 'grid'; document.getElementById('dashboard-container').style.display = 'none'; }
+    function showAuth() { document.getElementById('auth-container').style.display = 'flex'; if(window.innerWidth > 900) document.getElementById('auth-container').style.display = 'grid'; document.getElementById('dashboard-container').style.display = 'none'; }
     function showDash() { 
         document.getElementById('auth-container').style.display = 'none'; 
         document.getElementById('dashboard-container').style.display = 'block';
@@ -550,6 +635,12 @@
         document.getElementById('user-display').innerText = currentUser.username;
         document.getElementById('mob-user').innerText = currentUser.username;
         
+        // Mobile view default
+        if(window.innerWidth <= 768) {
+            switchMobileTab('home', document.querySelector('.nav-item')); // Default to home
+            document.getElementById('mob-nav-balance').style.display = 'block';
+        }
+
         initData();
     }
     
@@ -643,7 +734,7 @@
             const bal = (s.val() || 0).toFixed(2);
             // Update both desktop and mobile views
             document.getElementById('nav-balance').innerText = bal;
-            document.getElementById('mob-balance').innerText = bal;
+            document.getElementById('mob-balance-text').innerText = bal;
             document.getElementById('my-balance').innerText = '₹' + bal;
         });
 
@@ -699,7 +790,6 @@
             myOrders.forEach(o => {
                 count++;
                 let st = 'st-' + o.status.toLowerCase();
-                // We stringify the object to pass it to the modal safely
                 let safeObj = JSON.stringify(o).replace(/"/g, '&quot;');
                 
                 list.innerHTML += `
@@ -733,8 +823,6 @@
         const container = document.getElementById('wallet-history');
         container.innerHTML = '';
 
-        // Merge Arrays
-        // 1. Map Orders to Ledger Format
         const debitItems = myOrders.map(o => ({
             type: 'debit',
             amount: o.price,
@@ -743,7 +831,6 @@
             status: 'Deducted'
         }));
 
-        // 2. Map Deposits to Ledger Format
         const creditItems = myDeposits.map(p => ({
             type: 'credit',
             amount: p.amount,
@@ -752,7 +839,6 @@
             status: p.status
         }));
 
-        // 3. Combine and Sort by Date (Newest First)
         const allTxns = [...debitItems, ...creditItems].sort((a, b) => b.date - a.date);
 
         if(allTxns.length === 0) {
@@ -760,13 +846,11 @@
             return;
         }
 
-        // 4. Render
         allTxns.forEach(tx => {
             const isCredit = tx.type === 'credit';
             const colorClass = isCredit ? 'tx-credit' : 'tx-debit';
             const sign = isCredit ? '+' : '-';
             
-            // Format Date
             const d = new Date(tx.date);
             const dateStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
@@ -790,18 +874,15 @@
         const modal = document.getElementById('orderModal');
         modal.style.display = "block";
 
-        // Fill Details
         document.getElementById('m-order-id').innerText = '#' + order.key.substr(-4);
         document.getElementById('m-service-name').innerText = order.serviceName;
         document.getElementById('m-link').innerText = order.link;
         document.getElementById('m-qty').innerText = order.quantity;
         document.getElementById('m-price').innerText = order.price.toFixed(2);
         
-        // Advanced Placeholders (If you add these to DB later, map them here)
         document.getElementById('m-start').innerText = order.start_count || "0";
         document.getElementById('m-remains').innerText = order.remains || order.quantity;
 
-        // Timeline Logic
         const steps = ['pending', 'processing', 'completed'];
         steps.forEach(s => document.getElementById('step-'+s).classList.remove('active'));
 
@@ -813,7 +894,6 @@
         } else if (order.status === 'Completed') {
             steps.forEach(s => document.getElementById('step-'+s).classList.add('active'));
         } else if (order.status === 'Canceled') {
-            // Visual feedback for Canceled
             steps.forEach(s => document.getElementById('step-'+s).classList.remove('active'));
             document.getElementById('step-pending').querySelector('.tl-text').innerText = "Canceled";
             document.getElementById('step-pending').querySelector('.tl-dot').style.borderColor = "#ef4444";
@@ -823,13 +903,11 @@
 
     function closeOrderModal() {
         document.getElementById('orderModal').style.display = "none";
-        // Reset canceled state visual if needed
         document.getElementById('step-pending').querySelector('.tl-text').innerText = "Pending";
         document.getElementById('step-pending').querySelector('.tl-dot').style.borderColor = "";
         document.getElementById('step-pending').querySelector('.tl-dot').style.color = "";
     }
 
-    // Close modal if clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('orderModal');
         if (event.target == modal) {
